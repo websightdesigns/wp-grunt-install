@@ -1,0 +1,92 @@
+// ==========================================================================
+// Mixins
+// ==========================================================================
+
+// bp()
+// Media query breakpoints
+// Usage:
+// @include bp($min: 600px){ body { background:#000 } }
+// @include bp($max: 600px){ body { background:#000 } }
+// @include bp($min: 600px, $max: 600px){ body { background:#000 } }
+// @include bp($small){ body { background:#000 } }
+// @include bp($medium){ body { background:#000 } }
+// @include bp($large){ body { background:#000 } }
+
+@mixin bp($break: false, $min: false, $max: false, $media: 'only screen') {
+	@if $break {
+		@media #{$media} and (min-width: $break) { @content; }
+	}
+	@else if $min and $max {
+		@media #{$media} and (min-width: $min) and (max-width: $max) { @content; }
+	}
+	@else if $min {
+		@media #{$media} and (min-width: $min) { @content; }
+	}
+	@else if $max {
+		@media #{$media} and (max-width: $max) { @content; }
+	}
+}
+
+// border()
+// Border style and radius prefixes
+// Usage:
+// @include border($radius: 3px, $style: 1px solid red)
+
+@mixin border($radius: 3px, $style: 1px solid red) {
+	border: $style;
+	-moz-border-radius: $radius;
+	-webkit-border-radius: $radius;
+	-o-border-radius: $radius;
+	border-radius: $radius;
+}
+
+// transition()
+// Transition prefixes with variable arguments
+// Usage:
+// @include transition(red .3s ease)
+
+@mixin transition($args...) {
+	-webkit-transition: $args;
+	-moz-transition: $args;
+	-ms-transition: $args;
+	-o-transition: $args;
+	transition: $args;
+}
+
+// opacity()
+// Cross browser opacity, IE5+
+// Usage:
+// @include opacity(0.8)
+
+@mixin opacity($opacity) {
+	opacity: $opacity;
+	$opacity-ie: $opacity * 100;
+	filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+// box-shadow()
+// Box shadow prefixes
+// Usage:
+// @include box-shadow(0px 4px 5px #666, 2px 6px 10px #999)
+
+@mixin box-shadow($shadows...) {
+  -moz-box-shadow: $shadows;
+  -webkit-box-shadow: $shadows;
+  box-shadow: $shadows;
+}
+
+// clearfix
+// Clear floated elements, IE6+
+// Usage:
+// @extend %clearfix
+
+%clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}

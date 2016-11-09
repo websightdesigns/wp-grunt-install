@@ -1,0 +1,25 @@
+// Sass Template
+// @version SKEL_THEME_VERSION
+// @author SKEL_THEME_AUTHOR
+
+// settings
+@import "settings/themeinfo";
+@import "settings/template";
+@import "settings/variables";
+@import "settings/mixins";
+@import "settings/fonts";
+
+// framework
+@import "framework/bootstrap";
+
+// overall page layout
+@import "partials/layout";
+
+// global content
+@import "partials/global";
+
+// pages or sections
+// @import "partials/home";
+
+// sticky footer, must be last
+@import "partials/stickyfooter";
