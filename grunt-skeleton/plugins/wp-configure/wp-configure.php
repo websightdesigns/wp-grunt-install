@@ -32,22 +32,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /* Configure */
 $timezone = 'America/Denver';
 
-function wpconfigure_gmtime($ts=null, $is_associative=false){
-    if(is_null($ts)) $ts=time();
-    $t=array_map('intval',explode(',',gmdate('s,i,H,d,m,Y,w,z,I',$ts)));
-    $t[4]--;
-    $t[5]-=1900;
-    if(!$is_associative) return $t;
-    return array_combine(array('tm_sec','tm_min','tm_hour','tm_mday','tm_mon', 'tm_year','tm_wday','tm_yday','tm_isdst'), $t);
-}
-
 /* Runs when plugin is activated */
-register_activation_hook(__FILE__,'wpconfigure_install');
-
-/* Runs on plugin deactivation*/
-register_deactivation_hook( __FILE__, 'wpconfigure_remove' );
-
+register_activation_hook( __FILE__, 'wpconfigure_install' );
 function wpconfigure_install() {
+
+	/* set up some default settings */
+	wpconfigure_setup_defaults()
 
     /**
      * Configure apache rewrite rules
@@ -99,6 +89,8 @@ EOD;
 	$wp_rewrite->flush_rules();
 }
 
+/* Runs on plugin deactivation*/
+register_deactivation_hook( __FILE__, 'wpconfigure_remove' );
 function wpconfigure_remove() {
 	// remove our rewrite rules from Apache .htaccess
 	wpconfigure_remove_apache_rewrite_rules( 'Block Author URLs' );
@@ -160,8 +152,7 @@ function wpconfigure_remove_apache_rewrite_rules( $marker ) {
 	return (bool) file_put_contents( $htaccess_file , $htaccess_content );
 }
 
-// if 'Home' page doesn't exist, execute any initial settings once
-if(!get_page_by_title('Home')) {
+function wpconfigure_setup_defaults() {
 	// Get rid of 'Uncategorized' category and replace with 'Blog' as default
 	wp_update_term(1, 'category', array(
 		'name' => 'Blog',
@@ -199,35 +190,35 @@ if(!get_page_by_title('Home')) {
 
 	// Disable Smilies
 	update_option( 'use_smilies', 0 );
-}
 
-// Hide welcome panels (doesn't seem to work often)
-update_user_meta( 1, 'show_welcome_panel', 0 );
+	// Hide welcome panels (doesn't seem to work often)
+	update_user_meta( 1, 'show_welcome_panel', 0 );
 
-// Remove the default dashboard widgets
-function wpconfigure_remove_dashboard_meta() {
-	remove_meta_box('dashboard_incoming_links', 'dashboard', 'normal'); // Removes the 'incoming links' widget
-	remove_meta_box('dashboard_plugins', 'dashboard', 'normal'); // Removes the 'plugins' widget
-	remove_meta_box('dashboard_primary', 'dashboard', 'normal'); // Removes the 'WordPress News' widget
-	remove_meta_box('dashboard_secondary', 'dashboard', 'normal'); // Removes the secondary widget
-	remove_meta_box('dashboard_quick_press', 'dashboard', 'side'); // Removes the 'Quick Draft' widget
-	remove_meta_box('dashboard_recent_drafts', 'dashboard', 'side'); // Removes the 'Recent Drafts' widget
-	remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal'); // Removes the 'Activity' widget
-	remove_meta_box('dashboard_right_now', 'dashboard', 'normal'); // Removes the 'At a Glance' widget
-	remove_meta_box('dashboard_activity', 'dashboard', 'normal'); // Removes the 'Activity' widget (since 3.8)
-}
-add_action('admin_init', 'wpconfigure_remove_dashboard_meta');
+	// Remove the default dashboard widgets
+	add_action('admin_init', 'wpconfigure_remove_dashboard_meta');
+	function wpconfigure_remove_dashboard_meta() {
+		remove_meta_box('dashboard_incoming_links', 'dashboard', 'normal'); // Removes the 'incoming links' widget
+		remove_meta_box('dashboard_plugins', 'dashboard', 'normal'); // Removes the 'plugins' widget
+		remove_meta_box('dashboard_primary', 'dashboard', 'normal'); // Removes the 'WordPress News' widget
+		remove_meta_box('dashboard_secondary', 'dashboard', 'normal'); // Removes the secondary widget
+		remove_meta_box('dashboard_quick_press', 'dashboard', 'side'); // Removes the 'Quick Draft' widget
+		remove_meta_box('dashboard_recent_drafts', 'dashboard', 'side'); // Removes the 'Recent Drafts' widget
+		remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal'); // Removes the 'Activity' widget
+		remove_meta_box('dashboard_right_now', 'dashboard', 'normal'); // Removes the 'At a Glance' widget
+		remove_meta_box('dashboard_activity', 'dashboard', 'normal'); // Removes the 'Activity' widget (since 3.8)
+	}
 
-// Display a dashboard widget with my own welcome message
-function wpconfigure_dashboard_widget_function() {
-	echo '<p>Welcome to your new wordpress website.</p>
-	<p>Wordpress is a powerful platform for you to manage your content.</p>
-	<p>Use the links to the left to manage parts of your site.</p>
-	<p>If you need technical support, please <a href="post-new.php?post_type=ticket" target="_blank">submit a support ticket</a>.</p>';
-}
+	// Display a dashboard widget with my own welcome message
+	function wpconfigure_dashboard_widget_function() {
+		echo '<p>Welcome to your new wordpress website.</p>
+		<p>Wordpress is a powerful platform for you to manage your content.</p>
+		<p>Use the links to the left to manage parts of your site.</p>
+		<p>If you need technical support, please <a href="post-new.php?post_type=ticket" target="_blank">submit a support ticket</a>.</p>';
+	}
 
-// Create the dashboard widget above so it can be selected
-function wpconfigure_add_dashboard_widgets() {
-	wp_add_dashboard_widget('wpconfigure_dashboard_widget', 'Welcome To Your Wordpress CMS', 'wpconfigure_dashboard_widget_function');
+	// Create the dashboard widget above so it can be selected
+	add_action('wp_dashboard_setup', 'wpconfigure_add_dashboard_widgets' );
+	function wpconfigure_add_dashboard_widgets() {
+		wp_add_dashboard_widget('wpconfigure_dashboard_widget', 'Welcome To Your Wordpress CMS', 'wpconfigure_dashboard_widget_function');
+	}
 }
-add_action('wp_dashboard_setup', 'wpconfigure_add_dashboard_widgets' );

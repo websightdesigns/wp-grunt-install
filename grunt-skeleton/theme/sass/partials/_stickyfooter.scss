@@ -1,3 +1,20 @@
 // ==========================================================================
 // Sticky Footer
 // ==========================================================================
+/* Sticky footer styles - Keep this at the end of the file
+-------------------------------------------------- */
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+#content-wrapper {
+	min-height: 100%;
+	height: auto;
+	margin: 0 auto -75px;
+	padding: 0 0 75px;
+}
+#footer-wrapper {
+	min-height: 73px;
+}
