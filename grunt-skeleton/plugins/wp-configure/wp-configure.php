@@ -29,9 +29,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/* Configure */
-$timezone = 'America/Denver';
-
 /* Runs when plugin is activated */
 register_activation_hook( __FILE__, 'wpconfigure_install' );
 function wpconfigure_install() {
@@ -163,9 +160,6 @@ function wpconfigure_setup_defaults() {
 	// Set avatars to hidden
 	update_option( 'show_avatars', 0);
 
-	// Set Timezone
-	update_option( 'timezone_string', $timezone );
-
 	// Start of the Week
 	// 0 is Sunday, 1 is Monday and so on
 	update_option( 'start_of_week', 1 );
@@ -173,13 +167,14 @@ function wpconfigure_setup_defaults() {
 	// Increase the Size of the Post Editor
 	update_option( 'defaultPost_edit_rows', 40 );
 
-	// Don't Organize Uploads by Date
-	update_option('uploads_use_yearmonth_folders',0);
+	// // Don't Organize Uploads by Date
+	// update_option('uploads_use_yearmonth_folders', 0);
 
-	// Update Permalinks
-	update_option( 'selection','custom' );
-	update_option( 'permalink_structure','/%postname%/' );
+	// // Update Permalinks
+	// update_option( 'selection','custom' );
+	// update_option( 'permalink_structure','/%postname%/' );
 
+	// Enable comment moderation
 	update_option( 'comment_moderation', 1 );
 
 	/** Before a comment appears the comment author must have a previously approved comment: false */
