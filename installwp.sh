@@ -33,8 +33,12 @@ case "$1" in
   -c|--cleanup)
     cleanup="true"
     ;;
+  -p|--posts)
+    posts="true"
+    ;;
   -h|--help)
-    echo $"Usage: $0 [ --delete | --cleanup | --beta ]"
+    echo $"Memorable Usage: $0 [ --delete | --posts | --cleanup | --beta ]"
+    echo $"Shorthand Usage: $0 [ --d | --p | --c | --b ]"
     exit 1
     ;;
 esac
@@ -182,6 +186,15 @@ PHP
     wp widget add recent-posts footer-sidebar-1
     wp widget add recent-comments footer-sidebar-2
     wp widget add meta footer-sidebar-3
+
+    # optionally set up dummy posts
+    if [[ "$posts" == "true" ]]; then
+        wp post create ./$gruntskeleton/post.md --post_title='Modo altus saepe fecitque et seque Cecropio'
+        wp post create ./$gruntskeleton/post.md --post_title='Modo altus saepe fecitque et seque Cecropio'
+        wp post create ./$gruntskeleton/post.md --post_title='Modo altus saepe fecitque et seque Cecropio'
+        wp post create ./$gruntskeleton/post.md --post_title='Modo altus saepe fecitque et seque Cecropio'
+        wp post create ./$gruntskeleton/post.md --post_title='Modo altus saepe fecitque et seque Cecropio'
+    fi
 
     # optionally update core to beta version
     if [[ "$beta" == "true" ]]; then
