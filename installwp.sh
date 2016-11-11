@@ -170,6 +170,19 @@ PHP
     # update timezone
     wp option update timezone_string $timezone --autoload=yes
 
+    # remove default widgets
+    wp widget delete search-2
+    wp widget delete recent-posts-2
+    wp widget delete recent-comments-2
+    wp widget delete archives-2
+    wp widget delete categories-2
+    wp widget delete meta-2
+
+    # set up footer widgets
+    wp widget add recent-posts footer-sidebar-1
+    wp widget add recent-comments footer-sidebar-2
+    wp widget add meta footer-sidebar-3
+
     # optionally update core to beta version
     if [[ "$beta" == "true" ]]; then
         wp plugin install wordpress-beta-tester --activate
