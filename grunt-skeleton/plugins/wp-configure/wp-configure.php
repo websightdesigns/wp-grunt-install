@@ -167,13 +167,6 @@ function wpconfigure_setup_defaults() {
 	// Increase the Size of the Post Editor
 	update_option( 'defaultPost_edit_rows', 40 );
 
-	// // Don't Organize Uploads by Date
-	// update_option('uploads_use_yearmonth_folders', 0);
-
-	// // Update Permalinks
-	// update_option( 'selection','custom' );
-	// update_option( 'permalink_structure','/%postname%/' );
-
 	// Enable comment moderation
 	update_option( 'comment_moderation', 1 );
 
@@ -186,34 +179,41 @@ function wpconfigure_setup_defaults() {
 	// Disable Smilies
 	update_option( 'use_smilies', 0 );
 
-	// Hide welcome panels (doesn't seem to work often)
-	update_user_meta( 1, 'show_welcome_panel', 0 );
+	// // Don't Organize Uploads by Date
+	// update_option( 'uploads_use_yearmonth_folders', 0 );
 
-	// Remove the default dashboard widgets
-	add_action('admin_init', 'wpconfigure_remove_dashboard_meta');
-	function wpconfigure_remove_dashboard_meta() {
-		remove_meta_box('dashboard_incoming_links', 'dashboard', 'normal'); // Removes the 'incoming links' widget
-		remove_meta_box('dashboard_plugins', 'dashboard', 'normal'); // Removes the 'plugins' widget
-		remove_meta_box('dashboard_primary', 'dashboard', 'normal'); // Removes the 'WordPress News' widget
-		remove_meta_box('dashboard_secondary', 'dashboard', 'normal'); // Removes the secondary widget
-		remove_meta_box('dashboard_quick_press', 'dashboard', 'side'); // Removes the 'Quick Draft' widget
-		remove_meta_box('dashboard_recent_drafts', 'dashboard', 'side'); // Removes the 'Recent Drafts' widget
-		remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal'); // Removes the 'Activity' widget
-		remove_meta_box('dashboard_right_now', 'dashboard', 'normal'); // Removes the 'At a Glance' widget
-		remove_meta_box('dashboard_activity', 'dashboard', 'normal'); // Removes the 'Activity' widget (since 3.8)
-	}
+	// // Update Permalinks
+	// update_option( 'selection','custom' );
+	// update_option( 'permalink_structure','/%postname%/' );
+}
 
-	// Display a dashboard widget with my own welcome message
-	function wpconfigure_dashboard_widget_function() {
-		echo '<p>Welcome to your new wordpress website.</p>
-		<p>Wordpress is a powerful platform for you to manage your content.</p>
-		<p>Use the links to the left to manage parts of your site.</p>
-		<p>If you need technical support, please <a href="post-new.php?post_type=ticket" target="_blank">submit a support ticket</a>.</p>';
-	}
+// Hide welcome panels (doesn't seem to work often)
+update_user_meta( 1, 'show_welcome_panel', 0 );
 
-	// Create the dashboard widget above so it can be selected
-	add_action('wp_dashboard_setup', 'wpconfigure_add_dashboard_widgets' );
-	function wpconfigure_add_dashboard_widgets() {
-		wp_add_dashboard_widget('wpconfigure_dashboard_widget', 'Welcome To Your Wordpress CMS', 'wpconfigure_dashboard_widget_function');
-	}
+// Remove the default dashboard widgets
+add_action('admin_init', 'wpconfigure_remove_dashboard_meta');
+function wpconfigure_remove_dashboard_meta() {
+	remove_meta_box('dashboard_incoming_links', 'dashboard', 'normal'); // Removes the 'incoming links' widget
+	remove_meta_box('dashboard_plugins', 'dashboard', 'normal'); // Removes the 'plugins' widget
+	remove_meta_box('dashboard_primary', 'dashboard', 'normal'); // Removes the 'WordPress News' widget
+	remove_meta_box('dashboard_secondary', 'dashboard', 'normal'); // Removes the secondary widget
+	remove_meta_box('dashboard_quick_press', 'dashboard', 'side'); // Removes the 'Quick Draft' widget
+	remove_meta_box('dashboard_recent_drafts', 'dashboard', 'side'); // Removes the 'Recent Drafts' widget
+	remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal'); // Removes the 'Activity' widget
+	remove_meta_box('dashboard_right_now', 'dashboard', 'normal'); // Removes the 'At a Glance' widget
+	remove_meta_box('dashboard_activity', 'dashboard', 'normal'); // Removes the 'Activity' widget (since 3.8)
+}
+
+// Display a dashboard widget with my own welcome message
+function wpconfigure_dashboard_widget_function() {
+	echo '<p>Welcome to your new wordpress website.</p>
+	<p>Wordpress is a powerful platform for you to manage your content.</p>
+	<p>Use the links to the left to manage parts of your site.</p>
+	<p>If you need technical support, please <a href="post-new.php?post_type=ticket" target="_blank">submit a support ticket</a>.</p>';
+}
+
+// Create the dashboard widget above so it can be selected
+add_action('wp_dashboard_setup', 'wpconfigure_add_dashboard_widgets' );
+function wpconfigure_add_dashboard_widgets() {
+	wp_add_dashboard_widget('wpconfigure_dashboard_widget', 'Welcome To Your Wordpress CMS', 'wpconfigure_dashboard_widget_function');
 }
