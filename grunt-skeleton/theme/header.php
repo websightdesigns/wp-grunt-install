@@ -83,7 +83,7 @@ $global_keywords = 'global,keywords,go,here';
 						if ( get_theme_mod( 'SKEL_THEME_PREFIX_logo' ) ) :
 							?><img src='<?php echo esc_url( get_theme_mod( 'SKEL_THEME_PREFIX_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'><?php
 						else :
-							bloginfo( 'name' );
+							?><div class="navbar-brand-text"><?php bloginfo( 'name' ); ?></div><?php
 						endif;
 					?>
 				</a>

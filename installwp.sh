@@ -14,7 +14,7 @@ admin_user="neo"
 admin_pass="matrix"
 admin_email="foo@domain.com"
 theme_name="My Theme"
-theme_slug="my-theme" 
+theme_slug="my-theme"
 theme_prefix="my_theme"
 theme_url="http://domain.com"
 theme_author="John Doe"
@@ -168,7 +168,7 @@ PHP
     wp menu item add-custom primary-menu About /about
 
     # update timezone
-    wp option update timezone_string $timezone
+    wp option update timezone_string $timezone --autoload=yes
 
     # optionally update core to beta version
     if [[ "$beta" == "true" ]]; then

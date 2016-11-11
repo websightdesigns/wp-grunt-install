@@ -70,9 +70,9 @@
 // @include box-shadow(0px 4px 5px #666, 2px 6px 10px #999)
 
 @mixin box-shadow($shadows...) {
-  -moz-box-shadow: $shadows;
-  -webkit-box-shadow: $shadows;
-  box-shadow: $shadows;
+	-moz-box-shadow: $shadows;
+	-webkit-box-shadow: $shadows;
+	box-shadow: $shadows;
 }
 
 // clearfix
@@ -81,12 +81,23 @@
 // @extend %clearfix
 
 %clearfix {
-  *zoom: 1;
-  &:before, &:after {
-    content: " ";
-    display: table;
-  }
-  &:after {
-    clear: both;
-  }
+	*zoom: 1;
+	&:before, &:after {
+		content: " ";
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+// vertical centering
+// Usage:
+// @include vertical-align()
+@mixin vertical-align {
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
 }
