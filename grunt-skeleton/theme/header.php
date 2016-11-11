@@ -78,7 +78,15 @@ $global_keywords = 'global,keywords,go,here';
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="<?php bloginfo('wpurl'); ?>/">SKEL_THEME_NAME</a>
+				<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>/">
+					<?php
+						if ( get_theme_mod( 'SKEL_THEME_PREFIX_logo' ) ) :
+							?><img src='<?php echo esc_url( get_theme_mod( 'SKEL_THEME_PREFIX_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'><?php
+						else :
+							bloginfo( 'name' );
+						endif;
+					?>
+				</a>
 			</div>
 			<div class="collapse navbar-collapse">
 				<?php

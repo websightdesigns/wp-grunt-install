@@ -37,7 +37,7 @@ register_activation_hook( __FILE__, 'wpconfigure_install' );
 function wpconfigure_install() {
 
 	/* set up some default settings */
-	wpconfigure_setup_defaults()
+	wpconfigure_setup_defaults();
 
     /**
      * Configure apache rewrite rules

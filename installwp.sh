@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # configure
-mysqlconfig=".my.cnf"
+timezone="America/Denver"
+mysqlconfig="$HOME/.my.cnf"
 gruntskeleton="./grunt-skeleton"
 dbhost="localhost"
 dbname="newsitedb"
@@ -13,15 +14,33 @@ admin_user="neo"
 admin_pass="matrix"
 admin_email="foo@domain.com"
 theme_name="My Theme"
-theme_slug="my-theme"
+theme_slug="my-theme" 
 theme_prefix="my_theme"
 theme_url="http://domain.com"
 theme_author="John Doe"
 theme_author_url="http://domain.com"
 theme_version="1.0.0"
 
+# parse options
+case "$1" in
+  -d|--delete)
+    ./removewp.sh
+    echo "DROP DATABASE $dbname;" | mysql --defaults-group-suffix=$dbuser --defaults-file=$mysqlconfig -u $dbuser
+    ;;
+  -b|--beta)
+    beta="true"
+    ;;
+  -c|--cleanup)
+    cleanup="true"
+    ;;
+  -h|--help)
+    echo $"Usage: $0 [ --delete | --cleanup | --beta ]"
+    exit 1
+    ;;
+esac
+
 # if no mysqlconfig exists, exit with error
-if [ ! -f $HOME/$mysqlconfig ]; then
+if [ ! -f $mysqlconfig ]; then
     echo "ERROR: mysql config does not exist"
     exit
 fi
@@ -41,7 +60,7 @@ if [[ $grunt_cmd_check == *"not found"* ]]; then
 fi
 
 # get root password from mysql config
-dbpass_tmp=`awk "/client$dbuser/{getline; print}" $HOME/$mysqlconfig`
+dbpass_tmp=`awk "/client$dbuser/{getline; print}" $mysqlconfig`
 if [[ $dbpass_tmp == *"\""* ]]; then
     dbpass=`echo $dbpass_tmp | cut -d '"' -f2`
 fi
@@ -148,14 +167,19 @@ PHP
     wp menu item add-custom primary-menu Home /
     wp menu item add-custom primary-menu About /about
 
-    # # update core to beta version
-    # wp plugin install wordpress-beta-tester --activate
-    # wp option set wp_beta_tester_stream unstable
-    # wp core update
-    # wp core version --extra
+    # update timezone
+    wp option update timezone_string $timezone
+
+    # optionally update core to beta version
+    if [[ "$beta" == "true" ]]; then
+        wp plugin install wordpress-beta-tester --activate
+        wp option set wp_beta_tester_stream unstable
+        wp core update
+        wp core version --extra
+    fi
 
     # perform final cleanup
-    if [ "$1" == '--cleanup' ]; then
+    if [[ "$cleanup" == "true" ]]; then
         rm -rfv .git
         rm -rfv $gruntskeleton
         rm removewp.sh
