@@ -113,8 +113,6 @@ PHP
     cp $gruntskeleton/gruntfile.js .
     cp $gruntskeleton/package.json .
     cp $gruntskeleton/config.yml .
-    cp $gruntskeleton/.gitignore .
-    cp $gruntskeleton/.gitattributes .
     cp $gruntskeleton/wp-config-remote.php .
     cp $gruntskeleton/wp-config-local.php .
     mkdir ./wp-content/themes/$theme_slug
