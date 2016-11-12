@@ -1,5 +1,19 @@
 $(document).ready(function() {
 
+	// function to wait for the final event
+	var waitForFinalEvent = (function () {
+		var timers = {};
+		return function (callback, ms, uniqueId) {
+			if (!uniqueId) {
+				uniqueId = "Don't call this twice without a uniqueId";
+			}
+			if (timers[uniqueId]) {
+				clearTimeout (timers[uniqueId]);
+			}
+			timers[uniqueId] = setTimeout(callback, ms);
+		};
+	})();
+
 	// equal heights for footer widgets
 	equalheight = function(container) {
 		var currentTallest = 0,
@@ -29,10 +43,16 @@ $(document).ready(function() {
 		});
 	}
 	$(window).load(function() {
-		equalheight('.footer-sidebar .well');
+		if ($(window).width() >= 768) {
+			equalheight('.footer-sidebar .well');
+		}
 	});
-	$(window).resize(function(){
-		equalheight('.footer-sidebar .well');
+	$(window).resize(function() {
+		waitForFinalEvent(function(){
+			if ($(window).width() >= 768) {
+				equalheight('.footer-sidebar .well');
+			}
+		}, 100, "window_resize_event");
 	});
 
 });
