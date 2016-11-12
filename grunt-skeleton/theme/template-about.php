@@ -22,7 +22,6 @@ get_header(); ?>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#theme" aria-controls="theme" role="tab" data-toggle="tab">The Theme</a></li>
-          <li role="presentation"><a href="#features" aria-controls="features" role="tab" data-toggle="tab">Features</a></li>
           <li role="presentation"><a href="#todo" aria-controls="todo" role="tab" data-toggle="tab">To-Do List</a></li>
           <li role="presentation"><a href="#download" aria-controls="download" role="tab" data-toggle="tab">Download</a></li>
         </ul>
@@ -30,9 +29,7 @@ get_header(); ?>
         <!-- Tab panes -->
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="theme">
-            <h3>WordPress Readybase</h3>
-            <p>WordPress theme with Bootstrap 3 and a sticky footer page layout, meant as a starting point for common web projects.</p>
-            <h3>This Theme Ready Base Includes</h3>
+            <h3>Tools &amp; Libraries</h3>
             <ul>
               <li>Twitter Bootstrap 3.0.3</li>
               <li>jQuery Colorbox 1.5.14</li>
@@ -41,8 +38,6 @@ get_header(); ?>
               <li>Font Awesome 4.3.0</li>
               <li>Remote calls to html5shiv.js 3.7.0 and respond.js 1.4.2</li>
             </ul>
-          </div>
-          <div role="tabpanel" class="tab-pane" id="features">
             <h3>Features</h3>
             <ul class="checklist">
               <li><i class="fa fa-check"></i> Displays a navigation menu with <code>wp_nav_menu()</code></li>

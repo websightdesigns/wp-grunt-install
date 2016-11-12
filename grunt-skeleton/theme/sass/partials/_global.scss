@@ -12,9 +12,28 @@ a.btn-primary:visited {
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
+	.nav-tabs {
+		margin-left: 0;
+		li.active {
+			a {
+				background-color: #f5f5f5;
+			}
+		}
+	}
 }
-.footer-sidebar {
-	ul, ol {
-		margin: 0 0 1.5em 1.25em;
+ul, ol {
+	margin: 0 0 1.5em 1.25em;
+}
+// 767px and below
+@include bp($max: #{$small - 1}) {
+	.container {
+		& > .navbar-header {
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+	.row {
+	    margin-left: 0;
+	    margin-right: 0;
 	}
 }

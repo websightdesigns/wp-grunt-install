@@ -5,12 +5,13 @@
 // bp()
 // Media query breakpoints
 // Usage:
-// @include bp($min: 600px){ body { background:#000 } }
-// @include bp($max: 600px){ body { background:#000 } }
-// @include bp($min: 600px, $max: 600px){ body { background:#000 } }
+// @include bp($min: 600px){ body { background:#000 } } // 600px and above
+// @include bp($max: 600px){ body { background:#000 } } // 600px and below
+// @include bp($min: 600px, $max: 600px){ body { background:#000 } } // only at 600px exactly
 // @include bp($small){ body { background:#000 } }
 // @include bp($medium){ body { background:#000 } }
 // @include bp($large){ body { background:#000 } }
+// see templates/_responsive.scss for more examples
 
 @mixin bp($break: false, $min: false, $max: false, $media: 'only screen') {
 	@if $break {
