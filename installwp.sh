@@ -110,11 +110,11 @@ PHP
     find . -type f -name '.DS_Store' -exec rm -v {} \;
 
     # copy over files
-    cp $gruntskeleton/gruntfile.js .
-    cp $gruntskeleton/package.json .
-    cp $gruntskeleton/config.yml .
-    cp $gruntskeleton/wp-config-remote.php .
-    cp $gruntskeleton/wp-config-local.php .
+    cp -v $gruntskeleton/gruntfile.js .
+    cp -v $gruntskeleton/package.json .
+    cp -v $gruntskeleton/config.yml .
+    cp -v $gruntskeleton/wp-config-remote.php .
+    cp -v $gruntskeleton/wp-config-local.php .
     mkdir ./wp-content/themes/$theme_slug
     cp -Rv $gruntskeleton/theme/ ./wp-content/themes/$theme_slug
 
@@ -129,6 +129,9 @@ PHP
     LC_ALL=C find ./wp-content/themes/$theme_slug/* -type f -print -exec sed -i '' "s/SKEL_THEME_VERSION/$theme_version/" {} \;
     LC_ALL=C find ./wp-content/themes/$theme_slug/* -type f -print -exec sed -i '' "s/SKEL_THEME_SLUG/$theme_slug/" {} \;
     LC_ALL=C find ./wp-content/themes/$theme_slug/* -type f -print -exec sed -i '' "s/SKEL_THEME_PREFIX/$theme_prefix/" {} \;
+
+    # re-copy the fonts directory after the string replacement above
+    cp -Rv $gruntskeleton/theme/fonts/bootstrap/* ./wp-content/themes/$theme_slug/fonts/bootstrap/
 
     # install packages
     npm install
