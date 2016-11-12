@@ -22,26 +22,31 @@ theme_author_url="http://domain.com"
 theme_version="1.0.0"
 
 # parse options
-case "$1" in
-  -d|--delete)
-    ./removewp.sh
-    echo "DROP DATABASE $dbname;" | mysql --defaults-group-suffix=$dbuser --defaults-file=$mysqlconfig -u $dbuser
-    ;;
-  -b|--beta)
-    beta="true"
-    ;;
-  -c|--cleanup)
-    cleanup="true"
-    ;;
-  -p|--posts)
-    posts="true"
-    ;;
-  -h|--help)
-    echo $"Memorable Usage: $0 [ --delete | --posts | --cleanup | --beta ]"
-    echo $"Shorthand Usage: $0 [ --d | --p | --c | --b ]"
-    exit 1
-    ;;
-esac
+while :; do
+    case "$1" in
+        -d|--delete)
+            ./removewp.sh
+            echo "DROP DATABASE $dbname;" | mysql --defaults-group-suffix=$dbuser --defaults-file=$mysqlconfig -u $dbuser
+            ;;
+        -b|--beta)
+            beta="true"
+            ;;
+        -c|--cleanup)
+            cleanup="true"
+            ;;
+        -p|--posts)
+            posts="true"
+            ;;
+        -h|--help)
+            echo "Memorable Usage: $0 [ --delete | --posts | --cleanup | --beta ]"
+            echo "Shorthand Usage: $0 [ --d | --p | --c | --b ]"
+            exit 1
+            ;;
+        *) # Default case: If no more options then break out of the loop.
+            break
+    esac
+    shift
+done
 
 # if no mysqlconfig exists, exit with error
 if [ ! -f $mysqlconfig ]; then
@@ -101,10 +106,15 @@ PHP
     # remove default wp-config.php sample file
     rm -v ./wp-config-sample.php
 
+    # remove .DS_Store files, if any
+    find . -type f -name '.DS_Store' -exec rm -v {} \;
+
     # copy over files
     cp $gruntskeleton/gruntfile.js .
     cp $gruntskeleton/package.json .
     cp $gruntskeleton/config.yml .
+    cp $gruntskeleton/.gitignore .
+    cp $gruntskeleton/.gitattributes .
     cp $gruntskeleton/wp-config-remote.php .
     cp $gruntskeleton/wp-config-local.php .
     mkdir ./wp-content/themes/$theme_slug
@@ -189,11 +199,10 @@ PHP
 
     # optionally set up dummy posts
     if [[ "$posts" == "true" ]]; then
-        wp post create ./$gruntskeleton/post.md --post_title='Modo altus saepe fecitque et seque Cecropio'
-        wp post create ./$gruntskeleton/post.md --post_title='Modo altus saepe fecitque et seque Cecropio'
-        wp post create ./$gruntskeleton/post.md --post_title='Modo altus saepe fecitque et seque Cecropio'
-        wp post create ./$gruntskeleton/post.md --post_title='Modo altus saepe fecitque et seque Cecropio'
-        wp post create ./$gruntskeleton/post.md --post_title='Modo altus saepe fecitque et seque Cecropio'
+        for i in {1..5}; do
+            postid=`wp post create ./$gruntskeleton/post.md --post_status='publish' --post_title='Modo altus saepe fecitque et seque Cecropio' --porcelain`
+            wp comment create --comment_post_ID=$postid --comment_content="Hello, world." --comment_author="wp-cli"
+        done
     fi
 
     # optionally update core to beta version
