@@ -198,7 +198,7 @@ PHP
     # optionally set up dummy posts
     if [[ "$posts" == "true" ]]; then
         for i in {1..5}; do
-            postid=`wp post create ./$gruntskeleton/post.md --post_status='publish' --post_title='Modo altus saepe fecitque et seque Cecropio' --porcelain`
+            postid=`wp post create ./$gruntskeleton/post.md --post_status='publish' --post_title='Modo altus saepe fecitque et seque' --porcelain`
             wp comment create --comment_post_ID=$postid --comment_content="Hello, world." --comment_author="wp-cli"
         done
     fi
