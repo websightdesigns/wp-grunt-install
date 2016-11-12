@@ -1,0 +1,18 @@
+// ==========================================================================
+// Sticky Footer (Load this partial last in style.scss)
+// ==========================================================================
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+#content {
+	min-height: 100%;
+	height: auto;
+	margin: 0 auto -75px;
+	padding: 95px 0 75px;
+}
+#footer {
+	min-height: 75px;
+}

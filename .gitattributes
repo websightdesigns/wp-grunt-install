@@ -1,3 +1,4 @@
-*.woff binary
+*.woff2 -text diff
+*.woff -text diff
 *.ttf binary
 *.eot binary
