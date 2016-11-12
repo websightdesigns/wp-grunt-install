@@ -23,7 +23,7 @@ get_header(); ?>
           ?><p class="site-description"><?php echo $description; ?></p><?php
         endif;
       ?>
-      <p><a class="btn btn-primary btn-lg" href="<?php echo geturl('About'); ?>" role="button">Learn more</a></p>
+      <p><a class="btn btn-primary btn-lg" href="<?php echo geturl('About'); ?>" role="button">Learn more <span class="glyphicon glyphicon-link" aria-hidden="true"></span></a></p>
     </div>
 
     <div class="content-editable">
