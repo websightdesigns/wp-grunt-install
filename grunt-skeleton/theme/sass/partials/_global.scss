@@ -21,6 +21,10 @@ a.btn-primary:visited {
 		}
 	}
 }
+.breadcrumb {
+	padding: 8px 0;
+	margin-left: 0;
+}
 ul, ol {
 	margin: 0 0 1.5em 1.25em;
 }
@@ -33,7 +37,7 @@ ul, ol {
 		}
 	}
 	.row {
-	    margin-left: 0;
-	    margin-right: 0;
+		margin-left: 0;
+		margin-right: 0;
 	}
 }

@@ -51,8 +51,10 @@ $(document).ready(function() {
 		waitForFinalEvent(function(){
 			if ($(window).width() >= 768) {
 				equalheight('.footer-sidebar .well');
+			} else {
+				$('.footer-sidebar .well')removeAttr( 'style' );
 			}
-		}, 100, "window_resize_event");
+		}, 25, "window_resize_event");
 	});
 
 });
