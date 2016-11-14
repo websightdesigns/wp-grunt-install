@@ -198,6 +198,24 @@ PHP
     wp widget add recent-comments footer-sidebar-2
     wp widget add meta footer-sidebar-3
 
+    # wp-customize options
+    wp option add wpcustomize_admin_loginstyles --format=plaintext --autoload=yes < ./$gruntskeleton/wpcustomize_admin_loginstyles.txt
+    wp option add wpcustomize_admin_footer_contents --autoload=yes "Website by &lt;a href=&quot;http://websightdesigns.com/&quot; target=&quot;_blank&quot;&gt;webSIGHTdesigns&lt;/a&gt;."
+    wp option add wpcustomize_admin_bgcolor --autoload=yes "#000"
+    wp option add wpcustomize_admin_linkcolor --autoload=yes "#0b5394"
+    wp option add wpcustomize_admin_linkhovercolor --autoload=yes "#4c99ef"
+    wp option add wpcustomize_admin_page_title --autoload=yes "Please Authenticate"
+    wp option add wpcustomize_hide_register_forgot_links --autoload=yes "1"
+    wp option add wpcustomize_hide_back_link --autoload=yes "1"
+    wp option add wpcustomize_remember_me_by_default --autoload=yes "1"
+    wp option add wpcustomize_remove_login_shake --autoload=yes "1"
+    field_name_username="$theme_prefix"
+    field_name_username+="_user_login"
+    wp option add field_name_username --autoload=yes "$field_name_username"
+    field_name_password="$theme_prefix"
+    field_name_password+="_user_pass"
+    wp option add field_name_password --autoload=yes "$field_name_password"
+
     # optionally set up dummy posts
     if [[ "$posts" == "true" ]]; then
         for i in {1..5}; do
