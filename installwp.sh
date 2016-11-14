@@ -3,7 +3,7 @@
 # configure
 timezone="America/Denver"
 mysqlconfig="$HOME/.my.cnf"
-gruntskeleton="./grunt-skeleton"
+skeletonfiles="./skeleton-files"
 dbhost="localhost"
 dbname="newsitedb"
 dbuser="root"
@@ -110,13 +110,13 @@ PHP
     find . -type f -name '.DS_Store' -exec rm -v {} \;
 
     # copy over files
-    cp -v $gruntskeleton/gruntfile.js .
-    cp -v $gruntskeleton/package.json .
-    cp -v $gruntskeleton/config.yml .
-    cp -v $gruntskeleton/wp-config-remote.php .
-    cp -v $gruntskeleton/wp-config-local.php .
+    cp -v $skeletonfiles/gruntfile.js .
+    cp -v $skeletonfiles/package.json .
+    cp -v $skeletonfiles/config.yml .
+    cp -v $skeletonfiles/wp-config-remote.php .
+    cp -v $skeletonfiles/wp-config-local.php .
     mkdir ./wp-content/themes/$theme_slug
-    cp -Rv $gruntskeleton/theme/ ./wp-content/themes/$theme_slug
+    cp -Rv $skeletonfiles/theme/ ./wp-content/themes/$theme_slug
 
     # perform string replacements
     find ./gruntfile.js -type f -print -exec sed -i '' "s/SKEL_THEME_SLUG/$theme_slug/" {} \;
@@ -131,7 +131,7 @@ PHP
     LC_ALL=C find ./wp-content/themes/$theme_slug/* -type f -print -exec sed -i '' "s/SKEL_THEME_PREFIX/$theme_prefix/" {} \;
 
     # re-copy the fonts directory after the string replacement above
-    cp -Rv $gruntskeleton/theme/fonts/bootstrap/* ./wp-content/themes/$theme_slug/fonts/bootstrap/
+    cp -Rv $skeletonfiles/theme/fonts/bootstrap/* ./wp-content/themes/$theme_slug/fonts/bootstrap/
 
     # install packages
     npm install
@@ -146,10 +146,10 @@ PHP
     rm -rfv ./wp-content/plugins/*
 
     # copy plugins
-    cp -Rv $gruntskeleton/plugins/* ./wp-content/plugins
+    cp -Rv $skeletonfiles/plugins/* ./wp-content/plugins
 
     # activate any plugins in plugins directory
-    for plugindir in `find $gruntskeleton/plugins/* -type d -maxdepth 0`
+    for plugindir in `find $skeletonfiles/plugins/* -type d -maxdepth 0`
     do
         wp plugin activate `basename $plugindir`
     done
@@ -199,7 +199,7 @@ PHP
     wp widget add meta footer-sidebar-3
 
     # wp-customize options
-    wp option add wpcustomize_admin_loginstyles --format=plaintext --autoload=yes < ./$gruntskeleton/wpcustomize_admin_loginstyles.txt
+    wp option add wpcustomize_admin_loginstyles --format=plaintext --autoload=yes < ./$skeletonfiles/wpcustomize_admin_loginstyles.txt
     wp option add wpcustomize_admin_footer_contents --autoload=yes "Website by &lt;a href=&quot;http://websightdesigns.com/&quot; target=&quot;_blank&quot;&gt;webSIGHTdesigns&lt;/a&gt;."
     wp option add wpcustomize_admin_bgcolor --autoload=yes "#000"
     wp option add wpcustomize_admin_linkcolor --autoload=yes "#0b5394"
@@ -219,7 +219,7 @@ PHP
     # optionally set up dummy posts
     if [[ "$posts" == "true" ]]; then
         for i in {1..5}; do
-            postid=`wp post create ./$gruntskeleton/post.md --post_status='publish' --post_title='Modo altus saepe fecitque et seque' --porcelain`
+            postid=`wp post create ./$skeletonfiles/post.md --post_status='publish' --post_title='Modo altus saepe fecitque et seque' --porcelain`
             wp comment create --comment_post_ID=$postid --comment_content="Hello, world." --comment_author="wp-cli"
         done
     fi
@@ -235,11 +235,11 @@ PHP
     # perform final cleanup
     if [[ "$cleanup" == "true" ]]; then
         rm -rfv .git
-        rm -rfv $gruntskeleton
+        rm -rfv $skeletonfiles
         rm removewp.sh
         rm installwp.sh
         rm README.md
-        cp $gruntskeleton/README.md .
+        cp $skeletonfiles/README.md .
     fi
 
 fi
