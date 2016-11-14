@@ -38,8 +38,8 @@ while :; do
             posts="true"
             ;;
         -h|--help)
-            echo "Memorable Usage: $0 [ --delete | --posts | --cleanup | --beta ]"
-            echo "Shorthand Usage: $0 [ --d | --p | --c | --b ]"
+            echo "Memorable Usage: $0 [ --delete | --posts | --cleanup | --beta ] [ --help ]"
+            echo "Shorthand Usage: $0 [ --d | --p | --c | --b ] [ -h ]"
             exit 1
             ;;
         *) # Default case: If no more options then break out of the loop.

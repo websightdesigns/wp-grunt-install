@@ -50,6 +50,28 @@ During or development, you may wish to delete the database and files each time b
 		echo 'DROP DATABASE newsitedb;' | mysql --defaults-group-suffix=root --defaults-file=~/.my.cnf -u root; \
 		time ./installwp.sh > log.txt
 
+## Options
+
+`-d | --delete`
+
+If a database with the name specified in the `dbname` configuration variable already exists, it will be deleted before installing WordPress.
+
+`-p | --posts`
+
+If this option is provided, 5 default posts will be created.
+
+`-b | --beta`
+
+If this option is provided, WordPress will be upgraded to the latest beta version.
+
+`-c | --cleanup`
+
+If this option is provided, the `installwp.sh` script will delete all files from the repository, including itself.
+
+`-h | --help`
+
+This option will print the help screen and exit.
+
 ## Contributing
 
 If you'd like to contribute to this project please feel free to submit a pull request.
