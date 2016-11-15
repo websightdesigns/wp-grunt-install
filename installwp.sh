@@ -201,7 +201,7 @@ PHP
     # wp-customize options
     wp option add wpcustomize_admin_loginstyles --format=plaintext --autoload=yes < ./$skeletonfiles/wpcustomize_admin_loginstyles.txt
     wp option add wpcustomize_admin_footer_contents --autoload=yes "Website by &lt;a href=&quot;http://websightdesigns.com/&quot; target=&quot;_blank&quot;&gt;webSIGHTdesigns&lt;/a&gt;."
-    wp option add wpcustomize_admin_bgcolor --autoload=yes "#000"
+    wp option add wpcustomize_admin_bgcolor --autoload=yes "#f7f8f8"
     wp option add wpcustomize_admin_linkcolor --autoload=yes "#0b5394"
     wp option add wpcustomize_admin_linkhovercolor --autoload=yes "#4c99ef"
     wp option add wpcustomize_admin_page_title --autoload=yes "Please Authenticate"
@@ -215,6 +215,16 @@ PHP
     field_name_password="$theme_prefix"
     field_name_password+="_user_pass"
     wp option add field_name_password --autoload=yes "$field_name_password"
+    bg_attachment_id=`wp media import ./$skeletonfiles/wpcustomize_background.png --porcelain`
+    bg_background_url=`wp db query "SELECT guid FROM $(wp db tables *_posts) WHERE ID=\"$bg_attachment_id\"" | head -n 2 | tail -1`
+    wp option add wpcustomize_admin_login_background_url --autoload=yes "$bg_background_url"
+    logo_attachment_id=`wp media import ./$skeletonfiles/wpcustomize_logo.png --porcelain`
+    logo_background_url=`wp db query "SELECT guid FROM $(wp db tables *_posts) WHERE ID=\"$logo_attachment_id\"" | head -n 2 | tail -1`
+    wp option add wpcustomize_admin_logo_image_url --autoload=yes "$logo_background_url"
+    wp option add wpcustomize_admin_logo_width --autoload=yes "214"
+    wp option add wpcustomize_admin_logo_height --autoload=yes "41"
+    wp option add wpcustomize_admin_logo_area_width --autoload=yes "214"
+    wp option add wpcustomize_admin_logo_area_height --autoload=yes "41"
 
     # optionally set up dummy posts
     if [[ "$posts" == "true" ]]; then
