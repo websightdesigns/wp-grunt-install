@@ -245,10 +245,10 @@ PHP
     # perform final cleanup
     if [[ "$cleanup" == "true" ]]; then
         rm -rfv .git
-        rm -rfv $skeletonfiles
         rm removewp.sh
         rm README.md
         cp $skeletonfiles/README.md .
+        rm -rfv $skeletonfiles
         rm installwp.sh
     fi
 
