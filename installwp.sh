@@ -247,9 +247,9 @@ PHP
         rm -rfv .git
         rm -rfv $skeletonfiles
         rm removewp.sh
-        rm installwp.sh
         rm README.md
         cp $skeletonfiles/README.md .
+        rm installwp.sh
     fi
 
 fi
