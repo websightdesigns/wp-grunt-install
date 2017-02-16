@@ -52,7 +52,7 @@ $(document).ready(function() {
 			if ($(window).width() >= 768) {
 				equalheight('.footer-sidebar .well');
 			} else {
-				$('.footer-sidebar .well')removeAttr( 'style' );
+				$('.footer-sidebar .well').removeAttr( 'style' );
 			}
 		}, 25, "window_resize_event");
 	});
