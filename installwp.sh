@@ -1,18 +1,26 @@
 #!/bin/bash
 
-# configure
+# configure general options
 timezone="America/Denver"
 mysqlconfig="$HOME/.my.cnf"
 skeletonfiles="./skeleton-files"
+
+# configure database credentials
 dbhost="localhost"
 dbname="newsitedb"
 dbuser="root"
 dbprefix="wp_"
+
+# configure site
 site_title="My New Site"
 site_url="http://installwp.localhost"
+
+# configure wordpress admin credentials
 admin_user="neo"
 admin_pass="matrix"
 admin_email="foo@domain.com"
+
+# configure theme
 theme_name="My Theme"
 theme_slug="my-theme"
 theme_prefix="my_theme"
