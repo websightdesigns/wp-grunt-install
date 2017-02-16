@@ -21,6 +21,14 @@ theme_author="John Doe"
 theme_author_url="http://domain.com"
 theme_version="1.0.0"
 
+# configure plugins
+plugins=(
+    'wp-customize'
+    './skeleton-files/plugins/wp-configure.zip'
+    'parsedown-wp'
+    'gust'
+)
+
 # parse options
 while :; do
     case "$1" in
@@ -39,7 +47,7 @@ while :; do
             ;;
         -h|--help)
             echo "Memorable Usage: $0 [ --delete | --posts | --cleanup | --beta ] [ --help ]"
-            echo "Shorthand Usage: $0 [ --d | --p | --c | --b ] [ -h ]"
+            echo "Shorthand Usage: $0 [ -d | -p | -c | -b ] [ -h ]"
             exit 1
             ;;
         *) # Default case: If no more options then break out of the loop.
@@ -145,13 +153,18 @@ PHP
     # remove default plugins
     rm -rfv ./wp-content/plugins/*
 
-    # copy plugins
-    cp -Rv $skeletonfiles/plugins/* ./wp-content/plugins
+    # # copy plugins
+    # cp -Rv $skeletonfiles/plugins/* ./wp-content/plugins
 
-    # activate any plugins in plugins directory
-    for plugindir in `find $skeletonfiles/plugins/* -type d -maxdepth 0`
+    # # activate any plugins in plugins directory
+    # for plugindir in `find $skeletonfiles/plugins/* -type d -maxdepth 0`
+    # do
+    #     wp plugin activate `basename $plugindir`
+    # done
+
+    for i in "${plugins[@]}"
     do
-        wp plugin activate `basename $plugindir`
+        wp plugin install $i --activate
     done
 
     # delete default page and post
