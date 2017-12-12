@@ -40,7 +40,11 @@ To see how long the script takes to run, you can use `time`:
 
 	time ./installwp.sh
 
-To also remove the install scripts and files, use the `--cleanup` option:
+To log the output of the script a log file:
+
+	./installwp.sh &> log.txt
+
+To remove the install scripts and files, use the `--cleanup` option:
 
     ./installwp.sh --cleanup
 
