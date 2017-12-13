@@ -219,7 +219,7 @@ PHP
     wp widget add recent-comments footer-sidebar-2
     wp widget add meta footer-sidebar-3
 
-    # wp-customize options
+    # update wp-customize options
     wp option add wpcustomize_admin_loginstyles --format=plaintext --autoload=yes < ./$skeletonfiles/wpcustomize_admin_loginstyles.txt
     wp option add wpcustomize_admin_footer_contents --autoload=yes "Website by &lt;a href=&quot;http://websightdesigns.com/&quot; target=&quot;_blank&quot;&gt;webSIGHTdesigns&lt;/a&gt;."
     wp option add wpcustomize_admin_bgcolor --autoload=yes "#f7f8f8"
@@ -246,6 +246,9 @@ PHP
     wp option add wpcustomize_admin_logo_height --autoload=yes "41"
     wp option add wpcustomize_admin_logo_area_width --autoload=yes "214"
     wp option add wpcustomize_admin_logo_area_height --autoload=yes "41"
+
+    # update google-sitemap-generator options
+    wp option patch update sm_options sm_i_hide_survey 1
 
     # optionally set up dummy posts
     if [[ "$posts" == "true" ]]; then
