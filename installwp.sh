@@ -159,17 +159,19 @@ PHP
     wp theme activate $theme_slug
 
     # remove default plugins
+    echo "Removing default plugins..."
     rm -rfv ./wp-content/plugins/*
 
     # # copy plugins
     # cp -Rv $skeletonfiles/plugins/* ./wp-content/plugins
 
-    # # activate any plugins in plugins directory
+    # # activate any plugins in `skeleton-files/plugins` directory
     # for plugindir in `find $skeletonfiles/plugins/* -type d -maxdepth 0`
     # do
     #     wp plugin activate `basename $plugindir`
     # done
 
+    # activate plugins from the wordpress plugins repository
     for i in "${plugins[@]}"
     do
         wp plugin install $i --activate
