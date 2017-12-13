@@ -77,8 +77,8 @@ if [[ $wp_cmd_check == *"not found"* ]]; then
     exit
 fi
 
-# check if the wp command is available
-grunt_cmd_check=`type wp`
+# check if the grunt command is available
+grunt_cmd_check=`type grunt`
 if [[ $grunt_cmd_check == *"not found"* ]]; then
     echo "ERROR: grunt command not found"
     exit
