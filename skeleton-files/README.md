@@ -2,7 +2,27 @@
 
 # SKEL_THEME_NAME
 
+## Prerequisites
 
+You must have `grunt` and `npm` installed.
+
+## Install Instructions
+
+First clone down this landing page directory:
+
+    git clone git@github.com:90octane/oct-abm.git
+
+Install the node packages:
+
+    npm install
+
+Build the JS and CSS with GruntJS:
+
+    grunt build
+
+Or to run as a filewatcher, just run `grunt`:
+
+    grunt
 
 ## Our Website
 
