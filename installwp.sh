@@ -191,7 +191,7 @@ PHP
 
     # set rewrites structure and flush rewrites
     wp rewrite structure '/%postname%/'
-    wp rewrite flush
+    wp rewrite flush --hard
 
     # create menu titled "Primary Menu"
     wp menu create "Primary Menu"
