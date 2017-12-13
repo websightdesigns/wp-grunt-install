@@ -33,8 +33,8 @@ theme_version="1.0.0"
 plugins=(
     'wp-customize'
     'google-sitemap-generator'
-    # 'parsedown-wp'
-    # 'gust'
+    'parsedown-wp'
+    'gust'
 )
 
 # parse options
