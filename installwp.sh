@@ -33,8 +33,6 @@ theme_version="1.0.0"
 plugins=(
     'wp-customize'
     'google-sitemap-generator'
-    'parsedown-wp'
-    'gust'
 )
 
 # parse options
@@ -252,7 +250,7 @@ PHP
     # optionally set up dummy posts
     if [[ "$posts" == "true" ]]; then
         for i in {1..5}; do
-            postid=`wp post create ./$skeletonfiles/post.md --post_status='publish' --post_title='Modo altus saepe fecitque et seque' --porcelain`
+            postid=`wp post create ./$skeletonfiles/post.txt --post_status='publish' --post_title='Modo altus saepe fecitque et seque' --porcelain`
             wp comment create --comment_post_ID=$postid --comment_content="Hello, world." --comment_author="wp-cli"
         done
     fi
