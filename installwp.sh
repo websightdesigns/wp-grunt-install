@@ -250,6 +250,8 @@ PHP
 
     # update google-sitemap-generator options
     wp option patch update sm_options sm_i_hide_survey 1
+    wp option patch update sm_options sm_b_style_default 0
+    wp option patch update sm_options sm_b_style "/sitemap.xsl"
 
     # optionally set up dummy posts
     if [[ "$posts" == "true" ]]; then
