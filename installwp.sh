@@ -32,9 +32,9 @@ theme_version="1.0.0"
 # configure plugins
 plugins=(
     'wp-customize'
-    './skeleton-files/plugins/wp-configure.zip'
-    'parsedown-wp'
-    'gust'
+    'google-sitemap-generator'
+    # 'parsedown-wp'
+    # 'gust'
 )
 
 # parse options
