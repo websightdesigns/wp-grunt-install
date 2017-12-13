@@ -127,6 +127,7 @@ PHP
     cp -v $skeletonfiles/gruntfile.js .
     cp -v $skeletonfiles/package.json .
     cp -v $skeletonfiles/wp-cli.yml .
+    cp -v $skeletonfiles/sitemap.xsl .
     cp -v $skeletonfiles/wp-config-remote.php .
     cp -v $skeletonfiles/wp-config-local.php .
     mkdir ./wp-content/themes/$theme_slug
