@@ -48,7 +48,7 @@ To remove the install scripts and files, use the `--cleanup` option:
 
     ./installwp.sh --cleanup
 
-During or development, you may wish to delete the database and files each time before you run the script again:
+During development, you may wish to manually delete the database and files each time before you run the script again:
 
 	./removewp.sh; \
 		echo 'DROP DATABASE newsitedb;' | mysql --defaults-group-suffix=root --defaults-file=~/.my.cnf -u root; \
