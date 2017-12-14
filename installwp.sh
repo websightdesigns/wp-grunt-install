@@ -249,6 +249,12 @@ PHP
     wp option add wpcustomize_admin_logo_area_height --autoload=yes "41"
 
     # update google-sitemap-generator options
+    # note: google-sitemap-generator does not add the `sm_options` option until you visit the page in the admin, hence the below insanity...
+    partialhash=`php -r "require './wp-load.php'; echo substr(sha1(sha1(get_bloginfo('url'))),0,20);"`
+    phptime=`php -r 'echo time();'`
+    wp option add sm_options 'a:52:{s:18:"sm_b_prio_provider";s:41:"GoogleSitemapGeneratorPrioByCountProvider";s:9:"sm_b_ping";b:1;s:10:"sm_b_stats";b:0;s:12:"sm_b_pingmsn";b:1;s:12:"sm_b_autozip";b:1;s:11:"sm_b_memory";s:0:"";s:9:"sm_b_time";i:-1;s:18:"sm_b_style_default";b:1;s:10:"sm_b_style";s:0:"";s:12:"sm_b_baseurl";s:0:"";s:11:"sm_b_robots";b:1;s:9:"sm_b_html";b:1;s:12:"sm_b_exclude";a:0:{}s:17:"sm_b_exclude_cats";a:0:{}s:10:"sm_in_home";b:1;s:11:"sm_in_posts";b:1;s:15:"sm_in_posts_sub";b:0;s:11:"sm_in_pages";b:1;s:10:"sm_in_cats";b:0;s:10:"sm_in_arch";b:0;s:10:"sm_in_auth";b:0;s:10:"sm_in_tags";b:0;s:9:"sm_in_tax";a:0:{}s:17:"sm_in_customtypes";a:0:{}s:13:"sm_in_lastmod";b:1;s:10:"sm_cf_home";s:5:"daily";s:11:"sm_cf_posts";s:7:"monthly";s:11:"sm_cf_pages";s:6:"weekly";s:10:"sm_cf_cats";s:6:"weekly";s:10:"sm_cf_auth";s:6:"weekly";s:15:"sm_cf_arch_curr";s:5:"daily";s:14:"sm_cf_arch_old";s:6:"yearly";s:10:"sm_cf_tags";s:6:"weekly";s:10:"sm_pr_home";d:1;s:11:"sm_pr_posts";d:0.59999999999999998;s:15:"sm_pr_posts_min";d:0.20000000000000001;s:11:"sm_pr_pages";d:0.59999999999999998;s:10:"sm_pr_cats";d:0.29999999999999999;s:10:"sm_pr_arch";d:0.29999999999999999;s:10:"sm_pr_auth";d:0.29999999999999999;s:10:"sm_pr_tags";d:0.29999999999999999;s:12:"sm_i_donated";b:0;s:17:"sm_i_hide_donated";b:0;s:17:"sm_i_install_date";i:1513222949;s:16:"sm_i_hide_survey";b:0;s:14:"sm_i_hide_note";b:0;s:15:"sm_i_hide_works";b:0;s:16:"sm_i_hide_donors";b:0;s:9:"sm_i_hash";s:20:"c0cc3d8236a1a8a2b358";s:13:"sm_i_lastping";i:0;s:16:"sm_i_supportfeed";b:1;s:22:"sm_i_supportfeed_cache";i:0;}'
+    wp option patch update sm_options sm_i_install_date $phptime
+    wp option patch update sm_options sm_i_hash $partialhash
     wp option patch update sm_options sm_i_hide_survey 1
     wp option patch update sm_options sm_b_style_default 0
     wp option patch update sm_options sm_b_style "/sitemap.xsl"
