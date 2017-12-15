@@ -220,6 +220,9 @@ PHP
     wp widget add recent-comments footer-sidebar-2
     wp widget add meta footer-sidebar-3
 
+    # rename default category
+    wp term update category 1 --name=Updates
+
     # update wp-customize options
     wp option add wpcustomize_admin_loginstyles --format=plaintext --autoload=yes < ./$skeletonfiles/wpcustomize_admin_loginstyles.txt
     wp option add wpcustomize_admin_footer_contents --autoload=yes "Website by &lt;a href=&quot;http://websightdesigns.com/&quot; target=&quot;_blank&quot;&gt;webSIGHTdesigns&lt;/a&gt;."
