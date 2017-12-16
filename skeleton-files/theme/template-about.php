@@ -37,7 +37,7 @@ get_header(); ?>
               <li>jQuery matchHeight 0.5.2</li>
               <li>Font Awesome 4.3.0</li>
               <li>Remote calls to html5shiv.js 3.7.0 and respond.js 1.4.2</li>
-            </ul>
+            </ul>≈
             <h3>Features</h3>
             <ul class="checklist">
               <li><i class="fa fa-check"></i> Displays a navigation menu with <code>wp_nav_menu()</code></li>
@@ -47,7 +47,7 @@ get_header(); ?>
               <li><i class="fa fa-check"></i> Sidebar widgets support</li>
               <li><i class="fa fa-check"></i> Footer widgets support</li>
               <li><i class="fa fa-check"></i> Bootstrap pagination</li>
-              <li><i class="fa fa-check"></i> Automatically uses unminified styles and scripts over local hosts</li>
+              <li><i class="fa fa-check"></i> Automatically uses unminified styles and scripts over <code>.localhost</code> domains</li>
             </ul>
           </div>
           <div role="tabpanel" class="tab-pane" id="todo">
@@ -63,10 +63,10 @@ get_header(); ?>
           </div>
           <div role="tabpanel" class="tab-pane" id="download">
             <h3>Github Repository</h3>
-            <p class="text-muted"><a href="https://github.com/websightdesigns/SKEL_THEME_PREFIX" target="_blank">https://github.com/websightdesigns/SKEL_THEME_PREFIX</a></p>
+            <p class="text-muted"><a href="https://github.com/websightdesigns/customtheme" target="_blank">https://github.com/websightdesigns/customtheme</a></p>
             <h3>Clone the Repository</h3>
             <div id="copy-wrapper">
-              <span class="code text-muted copytext">git clone https://github.com/websightdesigns/SKEL_THEME_PREFIX.git</span>
+              <span class="code text-muted copytext">git clone https://github.com/websightdesigns/customtheme.git</span>
             </div>
             <h3>Contributing</h3>
             <p>Customtheme is an open source project so if you'd like to contribute in any way simply submit a pull request via Github.</p>
