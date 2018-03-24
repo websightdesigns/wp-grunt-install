@@ -1,5 +1,3 @@
-[![WebSight Designs](http://www.websightdesigns.com/img/logo.png)](http://www.websightdesigns.com)
-
 # WP Grunt Install
 
 This repository features an install script written in Bash which will install and configure WordPress, set up a starter theme, and configure grunt to compile JavaScript and Sass.
