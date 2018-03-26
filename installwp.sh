@@ -124,7 +124,7 @@ PHP
 	find . -type f -name '.DS_Store' -exec rm -v {} \;
 
 	# copy over files
-	cp -v $skeletonfiles/.htaccess .
+	cp -v $skeletonfiles/.htaccess.sample .htaccess
 	cp -v $skeletonfiles/gruntfile.js .
 	cp -v $skeletonfiles/package.json .
 	cp -v $skeletonfiles/wp-cli.yml .
