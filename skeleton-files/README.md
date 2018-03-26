@@ -8,10 +8,6 @@ You must have `grunt` and `npm` installed.
 
 ## Install Instructions
 
-First clone down this landing page directory:
-
-    git clone git@github.com:90octane/oct-abm.git
-
 Install the node packages:
 
     npm install
