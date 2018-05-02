@@ -286,6 +286,7 @@ PHP
 		rm removewp.sh
 		rm README.md
 		cp $skeletonfiles/README.md .
+		LC_ALL=C find ./README.md -type f -print -exec sed -i '' "s/SKEL_THEME_NAME/$theme_name/" {} \;
 		rm -rfv $skeletonfiles
 		rm installwp.sh
 	fi
