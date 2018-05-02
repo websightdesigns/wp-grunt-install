@@ -74,6 +74,12 @@ If this option is provided, the `installwp.sh` script will delete all files from
 
 This option will print the help screen and exit.
 
+## Beta Version
+
+For installing the latest beta version, you can install the Beta Tester plugin and set it to "Bleeding Edge" releases:
+
+	wp plugin install wordpress-beta-tester --activate && wp option set wp_beta_tester_stream unstable && wp core update && wp core version --extra
+
 ## Contributing
 
 If you'd like to contribute to this project please feel free to submit a pull request.
