@@ -82,6 +82,18 @@ The `installwp.sh` Bash script is not compatible with the version of `sed` that 
 
 Alternatively, you can modify all the `sed` commands in `installwp.sh` to change all instances of `sed -i` to `sed -i ''`.
 
+## Beta Version
+
+For installing the latest beta version, you can install the Beta Tester plugin and set it to "Bleeding Edge" releases:
+
+	wp plugin install wordpress-beta-tester --activate && wp option set wp_beta_tester_stream unstable && wp core update && wp core version --extra
+
+## Gutenberg
+
+To install the Gutenberg plugin:
+
+    wp plugin install gutenberg --activate
+
 ## Contributing
 
 If you'd like to contribute to this project please feel free to submit a pull request.
