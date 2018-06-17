@@ -135,16 +135,16 @@ PHP
 	cp -Rv $skeletonfiles/theme/ ./wp-content/themes/$theme_slug
 
 	# perform string replacements
-	find ./gruntfile.js -type f -print -exec sed -i '' "s/SKEL_THEME_SLUG/$theme_slug/" {} \;
-	find ./package.json -type f -print -exec sed -i '' "s/SKEL_THEME_SLUG/$theme_slug/" {} \;
-	find ./package.json -type f -print -exec sed -i '' "s/SKEL_THEME_VERSION/$theme_version/" {} \;
-	LC_ALL=C find ./wp-content/themes/$theme_slug/* -type f -print -exec sed -i '' "s/SKEL_THEME_NAME/$theme_name/" {} \;
-	LC_ALL=C find ./wp-content/themes/$theme_slug/* -type f -print -exec sed -i '' "s|SKEL_THEME_URL|$theme_url|" {} \;
-	LC_ALL=C find ./wp-content/themes/$theme_slug/* -type f -print -exec sed -i '' "s|SKEL_THEME_AUTHOR_URL|$theme_author_url|" {} \;
-	LC_ALL=C find ./wp-content/themes/$theme_slug/* -type f -print -exec sed -i '' "s/SKEL_THEME_AUTHOR/$theme_author/" {} \;
-	LC_ALL=C find ./wp-content/themes/$theme_slug/* -type f -print -exec sed -i '' "s/SKEL_THEME_VERSION/$theme_version/" {} \;
-	LC_ALL=C find ./wp-content/themes/$theme_slug/* -type f -print -exec sed -i '' "s/SKEL_THEME_SLUG/$theme_slug/" {} \;
-	LC_ALL=C find ./wp-content/themes/$theme_slug/* -type f -print -exec sed -i '' "s/SKEL_THEME_PREFIX/$theme_prefix/" {} \;
+	find ./gruntfile.js -type f -print -exec sed -i "s/SKEL_THEME_SLUG/$theme_slug/" {} \;
+	find ./package.json -type f -print -exec sed -i "s/SKEL_THEME_SLUG/$theme_slug/" {} \;
+	find ./package.json -type f -print -exec sed -i "s/SKEL_THEME_VERSION/$theme_version/" {} \;
+	LC_ALL=C find ./wp-content/themes/$theme_slug/* -type f -print -exec sed -i "s/SKEL_THEME_NAME/$theme_name/" {} \;
+	LC_ALL=C find ./wp-content/themes/$theme_slug/* -type f -print -exec sed -i "s|SKEL_THEME_URL|$theme_url|" {} \;
+	LC_ALL=C find ./wp-content/themes/$theme_slug/* -type f -print -exec sed -i "s|SKEL_THEME_AUTHOR_URL|$theme_author_url|" {} \;
+	LC_ALL=C find ./wp-content/themes/$theme_slug/* -type f -print -exec sed -i "s/SKEL_THEME_AUTHOR/$theme_author/" {} \;
+	LC_ALL=C find ./wp-content/themes/$theme_slug/* -type f -print -exec sed -i "s/SKEL_THEME_VERSION/$theme_version/" {} \;
+	LC_ALL=C find ./wp-content/themes/$theme_slug/* -type f -print -exec sed -i "s/SKEL_THEME_SLUG/$theme_slug/" {} \;
+	LC_ALL=C find ./wp-content/themes/$theme_slug/* -type f -print -exec sed -i "s/SKEL_THEME_PREFIX/$theme_prefix/" {} \;
 
 	# re-copy the fonts directory after the string replacement above
 	cp -Rv $skeletonfiles/theme/fonts/bootstrap/* ./wp-content/themes/$theme_slug/fonts/bootstrap/

@@ -74,6 +74,14 @@ If this option is provided, the `installwp.sh` script will delete all files from
 
 This option will print the help screen and exit.
 
+## Mac OS X Sed
+
+The `installwp.sh` Bash script is not compatible with the version of `sed` that ships with Mac OS X. If you use Homebrew, you can install GNU `sed` with:
+
+    brew install gnu-sed
+
+Alternatively, you can modify all the `sed` commands in `installwp.sh` to change all instances of `sed -i` to `sed -i ''`.
+
 ## Contributing
 
 If you'd like to contribute to this project please feel free to submit a pull request.
